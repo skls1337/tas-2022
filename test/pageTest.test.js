@@ -30,6 +30,7 @@ test("Validating add to favorite click", async () => {
     .substring(elementTitle.toString().length - 2);
   const noElementsAdded = totalItems.substring(0, 1);
   expect(noElementsAdded).toBe("1");
+  await browser.close()
 });
 
 test("Validating add to compare product click", async () => {
@@ -42,7 +43,7 @@ test("Validating add to compare product click", async () => {
     "//body//div[@id='product-category']//div[@class='row']//div[@class='row']//div[2]//div[1]//div[2]//div[2]//button[3]"
   );
   await buttonElement.click({ clickCount: 1 });
-  await page.waitForTimeout(3000);
+  await page.waitForTimeout(1000);
   const wishList = await page.$x("//a[@id='compare-total']");
   const elementTitle = await page.evaluate((el) => el.textContent, wishList[0]);
   const totalItems = elementTitle
@@ -50,4 +51,5 @@ test("Validating add to compare product click", async () => {
     .substring(elementTitle.toString().length - 2);
   const noElementsAdded = totalItems.substring(0, 1);
   expect(noElementsAdded).toBe("1");
+  await browser.close()
 });
